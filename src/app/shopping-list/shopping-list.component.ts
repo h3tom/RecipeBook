@@ -3,8 +3,7 @@ import { Ingredient } from '../shared/ingredient.model';
 
 @Component({
   selector: 'app-shopping-list',
-  templateUrl: './shopping-list.component.html',
-  styleUrls: []
+  templateUrl: './shopping-list.component.html'
 })
 export class ShoppingListComponent implements OnInit {
   ingredients: Ingredient[] = [
