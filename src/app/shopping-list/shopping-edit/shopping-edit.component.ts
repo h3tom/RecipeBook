@@ -3,21 +3,21 @@ import { Ingredient } from 'src/app/shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list.service';
 
 @Component({
-  selector: 'app-shopping-edit',
-  templateUrl: './shopping-edit.component.html'
+    selector: 'app-shopping-edit',
+    templateUrl: './shopping-edit.component.html'
 })
 export class ShoppingEditComponent implements OnInit {
-  @ViewChild('nameInput', { static: false }) name: ElementRef;
-  @ViewChild('amountInput', { static: false }) amount: ElementRef;
+    @ViewChild('nameInput', { static: false }) name: ElementRef;
+    @ViewChild('amountInput', { static: false }) amount: ElementRef;
 
-  constructor(private shoppingListService: ShoppingListService) { }
+    constructor(private shoppingListService: ShoppingListService) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
-  onAddIngredient() {
-    const newIngredient = new Ingredient(this.name.nativeElement.value, this.amount.nativeElement.value);
-    this.shoppingListService.addIngredient(newIngredient);
-  }
+    onAddIngredient() {
+        const newIngredient = new Ingredient(this.name.nativeElement.value, this.amount.nativeElement.value);
+        this.shoppingListService.addIngredient(newIngredient);
+    }
 
 }
