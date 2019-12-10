@@ -24,7 +24,7 @@ export class ShoppingListService {
 
     addIngredients(ingredients: Ingredient[]) {
         this.ingredients.push(...ingredients);
-        this.ingredientsChanged.next(this.ingredients.slice())
+        this.ingredientsChanged.next(this.ingredients.slice());
         alert('Ingredients added to Shopping List!');
     }
 
