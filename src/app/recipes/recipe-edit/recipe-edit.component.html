@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
             <div class="row">
                 <div class="col-md-12 btn-toolbar">
                     <button type="submit" class="btn btn-success">Save</button>
@@ -38,16 +38,23 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
-                    <div class="row">
+                <div class="col-md-12" formArrayName="ingredients">
+                    <div class="row" *ngFor="let ingredientCtrl of controls; let i = index" [formGroupName]="i"
+                        style="margin: 10px;">
                         <div class="col-md-8">
-                            <input type="text" class="form-control">
+                            <input formControlName="name" type="text" class="form-control">
                         </div>
                         <div class="col-md-2">
-                            <input type="number" class="form-control">
+                            <input formControlName="amount" type="number" class="form-control">
                         </div>
                         <div class="col-md-2">
                             <button class="btn btn-danger">X</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-success" (click)="onAddIngredient()">Add Ingredient</button>
                         </div>
                     </div>
                 </div>
