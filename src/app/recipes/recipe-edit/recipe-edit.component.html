@@ -29,7 +29,8 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <img [src]="imagePath.value" alt="Error, couldn't load image" class="img-responsive center-block" style="max-height: 300px;">
+                    <img [src]="imagePath.value" alt="Error, couldn't load image" class="img-responsive center-block"
+                        style="max-height: 300px;">
                 </div>
             </div>
             <div class="row">
@@ -48,20 +49,21 @@
                     <div class="row" *ngFor="let ingredientCtrl of controls; let i = index" [formGroupName]="i"
                         style="margin: 10px;">
                         <div class="col-md-7">
-                            <input formControlName="name" type="text" class="form-control" placeholder="Ingredient Name">
+                            <input formControlName="name" type="text" class="form-control"
+                                placeholder="Ingredient Name">
                         </div>
                         <div class="col-md-3">
                             <input formControlName="amount" type="number" class="form-control" placeholder="Amount">
                         </div>
                         <div class="col-md-2">
-                            <button class="btn btn-danger">X</button>
+                            <button type="button" class="btn btn-danger" (click)="onDeleteIngredient(i)">X</button>
                         </div>
                     </div>
                     <hr>
                     <div class="row">
                         <div class="col-md-12">
-                            <button type="button" class="btn btn-success" (click)="onAddIngredient()">Add
-                                Ingredient</button>
+                            <button type="button" class="btn btn-success" (click)="onAddIngredient()">
+                                Add Ingredient</button>
                         </div>
                     </div>
                 </div>
