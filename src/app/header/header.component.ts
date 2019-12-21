@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
     }
 
     onFetch() {
-        this.dataStorageService.fetchRecipesFromDB();
+        this.dataStorageService.fetchRecipesFromDB().subscribe();
     }
 
 }

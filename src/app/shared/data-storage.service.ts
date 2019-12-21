@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Recipe } from '../recipes/recipe.model';
 import { Injectable } from '@angular/core';
 import { RecipeService } from '../recipes/recipe.service';
+import { tap } from 'rxjs/operators'
 
 @Injectable()
 export class DataStorageService {
@@ -9,8 +10,8 @@ export class DataStorageService {
     constructor(private http: HttpClient, private recipeService: RecipeService) { }
 
     fetchRecipesFromDB() {
-        this.http.get<Recipe[]>('https://hetom-recipebookbackend.herokuapp.com/recipe/all').subscribe(
-            (recipes => {
+        return this.http.get<Recipe[]>('https://hetom-recipebookbackend.herokuapp.com/recipe/all').pipe(
+            tap(recipes => {
                 this.recipeService.setRecipes(recipes);
             })
         )
