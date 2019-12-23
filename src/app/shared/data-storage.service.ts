@@ -22,7 +22,7 @@ export class DataStorageService {
             (response => {
                 if (response === 'OK') {
                     alert('Recipe added');
-                    this.fetchRecipesFromDB();
+                    this.fetchRecipesFromDB().subscribe();
                 } else {
                     alert('Could not add Recipe')
                 }
@@ -35,7 +35,7 @@ export class DataStorageService {
             (response => {
                 if (response === 'OK') {
                     alert('Recipe updated')
-                    this.fetchRecipesFromDB();
+                    this.fetchRecipesFromDB().subscribe();
                 } else {
                     alert('Could not update Recipe')
                 }
@@ -48,7 +48,7 @@ export class DataStorageService {
             (response => {
                 if (response === 'OK') {
                     alert('Recipe deleted');
-                    this.fetchRecipesFromDB();
+                    this.fetchRecipesFromDB().subscribe();
                 } else {
                     alert('Could not delete Recipe')
                 }
