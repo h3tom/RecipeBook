@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="alert alert-danger" *ngIf="error">
+            <p style="text-align: center;">{{ error }}</p>
+        </div>
+        <div *ngIf="isLoading" style="text-align: center;">
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+        <!-- Log in Form -->
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" *ngIf="isLoginMode && !isLoading">
+            <h2 class="text-center">Log in</h2>
+            <div class="form-group">
+                <label for="usernameOrEmail">Email or Username</label>
+                <input type="text" formControlName="usernameOrEmail" id="usernameOrEmail" class="form-control">
+                <span *ngIf="!loginForm.get('usernameOrEmail').valid && loginForm.get('usernameOrEmail').touched">
+                    Plese enter Email or Username
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" formControlName="password" id="password" class="form-control">
+                <span *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched">
+                    Please enter Password
+                </span>
+            </div>
+            <div class="btn-toolbar">
+                <button class="btn btn-primary" type="submit"
+                    [disabled]="!loginForm.valid">Log in</button>
+                <button class="btn btn-warning" type="button" (click)="onSwitchMode()">Switch to Sign up</button>
+            </div>
+        </form>
+    </div>
+</div>
