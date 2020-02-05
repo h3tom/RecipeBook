@@ -38,11 +38,38 @@ export class RecipeEditComponent implements OnInit {
 
     onSubmit() {
         if (this.editMode) {
-            this.dataStorageService.updateRecipe(this.recipeForm.value);
+            this.dataStorageService.updateRecipe(this.recipeForm.value).subscribe(
+                response => {
+                    if (response.success) {
+                        alert(response.message)
+                        this.dataStorageService.fetchRecipesFromDB().subscribe();
+                        this.onCancel()
+                    }
+                }, error => {
+                    if (error.error.message.includes('Validation')) {
+                        alert('Validation failed, please fill correctly all required fields.');
+                    } else {
+                        alert('Unexpected error occurred, please try again later.');
+                    }
+                }
+            );
         } else {
-            this.dataStorageService.addRecipe(this.recipeForm.value);
+            this.dataStorageService.addRecipe(this.recipeForm.value).subscribe(
+                response => {
+                    if (response.success) {
+                        alert(response.message);
+                        this.dataStorageService.fetchRecipesFromDB().subscribe();
+                        this.onCancel();
+                    }
+                }, error => {
+                    if (error.error.message.includes('Validation')) {
+                        alert('Validation failed, please fill correctly all required fields.');
+                    } else {
+                        alert('Unexpected error occurred, please try again later.');
+                    }
+                }
+            );
         }
-        this.onCancel();
     }
 
     onCancel() {

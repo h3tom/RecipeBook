@@ -38,8 +38,17 @@ export class RecipeDetailComponent implements OnInit {
     }
 
     onDeleteRecipe() {
-        this.dataStorageService.deleteRecipe(this.recipe.id);
-        this.router.navigate(['/recipes']);
+        this.dataStorageService.deleteRecipe(this.recipe.id).subscribe(
+            response => {
+                if (response.success) {
+                    alert(response.message);
+                    this.dataStorageService.fetchRecipesFromDB().subscribe();
+                    this.router.navigate(['/recipes']);
+                }
+            }, error => {
+                alert('Cannot delete recipe');
+            }
+        );
     }
 
 }

@@ -4,6 +4,11 @@ import { Injectable } from '@angular/core';
 import { RecipeService } from '../recipes/recipe.service';
 import { tap } from 'rxjs/operators'
 
+interface ApiResponse{
+    success: boolean,
+    message: string
+}
+
 @Injectable()
 export class DataStorageService {
 
@@ -18,42 +23,15 @@ export class DataStorageService {
     }
 
     addRecipe(recipe: Recipe) {
-        this.http.post('https://hetom-recipebookbackend.herokuapp.com/recipe', recipe).subscribe(
-            (response => {
-                if (response === 'OK') {
-                    alert('Recipe added');
-                    this.fetchRecipesFromDB().subscribe();
-                } else {
-                    alert('Could not add Recipe')
-                }
-            })
-        )
+        return this.http.post<ApiResponse>('https://hetom-recipebookbackend.herokuapp.com/recipe', recipe);
     }
 
     updateRecipe(recipe: Recipe) {
-        this.http.put('https://hetom-recipebookbackend.herokuapp.com/recipe', recipe).subscribe(
-            (response => {
-                if (response === 'OK') {
-                    alert('Recipe updated')
-                    this.fetchRecipesFromDB().subscribe();
-                } else {
-                    alert('Could not update Recipe')
-                }
-            })
-        )
+        return this.http.put<ApiResponse>('https://hetom-recipebookbackend.herokuapp.com/recipe', recipe);
     }
 
     deleteRecipe(id: number) {
-        this.http.delete('https://hetom-recipebookbackend.herokuapp.com/recipe/' + id).subscribe(
-            (response => {
-                if (response === 'OK') {
-                    alert('Recipe deleted');
-                    this.fetchRecipesFromDB().subscribe();
-                } else {
-                    alert('Could not delete Recipe')
-                }
-            })
-        );
+        return this.http.delete<ApiResponse>('https://hetom-recipebookbackend.herokuapp.com/recipe/' + id);
     }
 
 }
